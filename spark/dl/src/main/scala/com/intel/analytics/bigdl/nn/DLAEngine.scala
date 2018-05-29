@@ -30,8 +30,8 @@ class DLAEngine[T: ClassTag]
     System.loadLibrary("DLAEngineImpl")
     System.loadLibrary("dla")
     System.loadLibrary("mongoose")
-    val re = dlaInference("")
-    println("DLA result:" + re.toString)
+    val re = dlaInference("").toList
+    println("DLA result: " + re(0) + " FPS")
     return Tensor[T](1, 2, 3)
   }
 
@@ -54,6 +54,9 @@ object DLAEngine {
 
   }
 
+  def setBatchSize(imagePath : Int) : Unit = {
+
+  }
   def getImages[@specialized(Float, Double) T: ClassTag]
       (implicit ev: TensorNumeric[T]): Tensor[T] = {
     return Tensor[T](1, 2, 3)
